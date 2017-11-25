@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加导航</title>
+</head>
+<body>
+    <form action="/doAddNav" method="post">
+        导航分类：
+        <select name="type_id" id="typeId">
+            <% jsonArr.forEach(function(resJson){ %>
+                <option value="<%= resJson.id %>"><%= resJson.name %></option>
+            <% }) %>
+        </select><br>
+
+        名称：<input type="text" name="title"><br>
+       链接：<input type="text" name="link"><br>
+        生产：<input type="radio" name="flag" value="1">
+        测试：<input type="radio" name="flag" value="0"><br>
+        <input type="submit" value="添加">
+    </form>
+</body>
+</html>

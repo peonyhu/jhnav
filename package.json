@@ -1,0 +1,17 @@
+{
+  "name": "jhnav",
+  "version": "1.0.0",
+  "description": "金汇常用导航",
+  "main": "app.js",
+  "scripts": {
+    "test": "This is a test."
+  },
+  "author": "flxu",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mysql2": "^1.4.2",
+    "sequelize": "^4.22.5"
+  }
+}

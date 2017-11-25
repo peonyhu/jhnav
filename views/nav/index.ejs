@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>导航</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+<body>
+    <a href="/addNav">添加导航</a><br><br>
+    <h2>常用网站</h2>
+
+    <% jsonArr.type_id_2.forEach(function(resJson){ %>
+    <a href="<%= resJson.link %>"><%= resJson.title %></a><br>
+    <% }) %>
+
+    <h2>内部常用工具</h2>
+    <% jsonArr.type_id_1.forEach(function(resJson){ %>
+        <a href="<%= resJson.link %>"><%= resJson.title %></a><br>
+    <% }) %>
+
+    
+</body>
+</html>
