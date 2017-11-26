@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var gulpConfig = require('./gulpfile-config');
 var cssConfig = gulpConfig.css;
-//var autoprefixer = require('gulp-autoprefixer');//自动添加浏览器兼容后缀
+var autoprefixer = require('gulp-autoprefixer');//自动添加浏览器兼容后缀
 var uglify = require('gulp-uglify');//压缩js
 var jsConfig =gulpConfig.js;
 //var jshint = require('gulp-jshint');//js 代码检查
@@ -90,6 +90,10 @@ gulp.task('publish-js', function (){
 
 gulp.task('publish-css',function(){
     return gulp.src(cssConfig.src)
+        .pipe(autoprefixer({
+          browsers: ['last 2 versions'],
+          cascade: false}))
+        .pipe(gulp.dest('public/css/'))
         .pipe(minifycss())
         .pipe(rev())
         .pipe(gulp.dest(cssConfig.dest))
