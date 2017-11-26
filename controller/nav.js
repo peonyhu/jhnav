@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-var sequelize = require('../db');
+var sequelize = require('../config/db');
 var Nav = sequelize.define('nav',{
     flag:{
         type:Sequelize.INTEGER
@@ -43,12 +43,12 @@ module.exports = {
                     resSet['type_id_'+result[i].type_id].push(result[i]);
                 }
             }
-            res.render('../views/nav/index',{jsonArr:resSet});
+            res.render('nav/index',{jsonArr:resSet});
         })
     },
     addNav: function(req,res){
         NavType.findAll({raw:true}).then(function(result){
-            res.render('../views/nav/add_nav',{jsonArr:result});
+            res.render('nav/add_nav',{jsonArr:result});
         });
     },
     doAddNav: function(req,res){
