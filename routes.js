@@ -9,5 +9,6 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 router.get('/', controller.nav.index);
 router.get('/addNav',controller.nav.addNav);
 router.post('/doAddNav',urlencodedParser,controller.nav.doAddNav);
+//router.post('/del',urlencodedParser,controller.nav.doDelNav);
 
 module.exports = router;

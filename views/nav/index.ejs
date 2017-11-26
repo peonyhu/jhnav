@@ -6,20 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>导航</title>
     <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
 </head>
 <body>
-    <img src="images/logo.png" alt="">
-    <a href="/addNav">添加导航</a><br><br>
-    <h2>常用网站</h2>
-
-    <% jsonArr.type_id_2.forEach(function(resJson){ %>
-    <a href="<%= resJson.link %>"><%= resJson.title %></a><br>
-    <% }) %>
-
-    <h2>内部常用工具</h2>
-    <% jsonArr.type_id_1.forEach(function(resJson){ %>
-        <a href="<%= resJson.link %>"><%= resJson.title %></a><br>
-    <% }) %>
+    <div class="g-header">
+        <div id="header">
+            <div class="logo">
+                <a href="/">
+                    <img src="images/logo.png" alt="">
+                </a>
+            </div>
+            <ul class="menu">
+                <li class="menu_hover">
+                    <a href="/">首页</a> 
+                </li>  
+                <li>
+                    <a href="/addNav">添加导航</a> 
+                </li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="g-main-wrap">
+        <div class="w1100">
+            <h2 class="m-title">常用网站</h2>
+            <ul class="m-site-list">
+                <% jsonArr.type_id_2.forEach(function(resJson){ %>
+                <li><a href="<%= resJson.link %>"><%= resJson.title %></a><a class="u-edit" href="/addNav?id=<%= resJson.id %>">编辑</a><span class="u-del" j-site-id="<%= resJson.id %>">删除</span></li>
+                <% }) %>
+            </ul>
+        
+            <h2 class="m-title">内部常用工具</h2>
+            <ul class="m-site-list">
+                <% jsonArr.type_id_1.forEach(function(resJson){ %>
+                    <li><a href="<%= resJson.link %>"><%= resJson.title %></a><a class="u-edit" href="/addNav?id=<%= resJson.id %>">编辑</a><span class="u-del" j-site-id="<%= resJson.id %>">删除</span></li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
 
     <script type="text/javascript" src="scripts/index.js"></script>
 </body>

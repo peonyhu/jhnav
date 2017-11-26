@@ -1,6 +1,25 @@
 @import 'public';
 
-*{padding:0;margin:0;color: $color4;box-shadow:0 0 40px;}
+*{padding:0;margin:0;color: $color4; font-family:"Microsoft Yahei";}
 ul,li{list-style: none;}
 a{ color: $color2; text-decoration: none;}
 a:hover{ color: $color3;}
+h1,h2,h3,h4,h5,h6{font-weight: normal;}
+.fr{float:right;}
+.fl{float:left;}
+
+/* 头部 */
+.g-header{background-color:$color7;}
+#header{width:1100px; margin:0 auto;height: 68px; margin-top:10px;margin-bottom: 10px; position:relative;z-index: 10000;}
+.logo{ float:left;}
+.slogn{ margin: 0 0 0 10px;}
+.menu{height:39px; padding-top:12px;float: right;}
+.menu li{margin: 0 12px; text-align:center; line-height:35px; height:35px;font-size:14px;float:left;border-bottom:4px solid #fff;position: relative;}
+.menu .menu-last-child{ padding: 0 0 0 12px;}
+.menu li a{color: $color4;}
+.menu li a:hover{color: $color1;}
+li.menu_hover{border-bottom:1px solid $color1;}
+li.menu_hover a{color: $color1;}
+
+.g-main-wrap{background-color:$color6;padding-bottom:60px;}
+.w1100{width:1100px;margin: 0 auto;}
