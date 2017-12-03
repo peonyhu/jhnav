@@ -7,8 +7,9 @@ var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 // 访问根路由 渲染 index 模板
 router.get('/', controller.nav.index);
+router.get('/addNav/:id',controller.nav.addNav);
 router.get('/addNav',controller.nav.addNav);
 router.post('/doAddNav',urlencodedParser,controller.nav.doAddNav);
-//router.post('/del',urlencodedParser,controller.nav.doDelNav);
+router.post('/del',urlencodedParser,controller.nav.doDelNav);
 
 module.exports = router;

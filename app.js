@@ -19,6 +19,6 @@ app.set('view engine' , 'ejs'); //设置模板引擎为ejs
 var router = require('./routes');
 app.use('/', router);
 
-app.listen(3001);    // 监听 3000 端口
+app.listen(3000);    // 监听 3000 端口
 
 console.log('server started at port 3000');

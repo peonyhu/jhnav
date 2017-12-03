@@ -3,6 +3,7 @@
 .m-site-list{background-color:$color7;padding:20px 30px;}
 .m-site-list li{height: 36px;line-height: 36px;clear: both;}
 .m-site-list li a{float: left;height: 36px;margin-right: 25px;}
+.m-site-list li a.color1{color: $color1;}
 .m-site-list li .u-edit,.m-site-list li .u-del{float:right;padding-left:20px;height: 36px;color: $color1;display: none;}
 .m-site-list li.active .u-del{color:$color8;cursor: pointer;}
 .m-site-list li.active .u-edit,.m-site-list li.active .u-del{display: block;}

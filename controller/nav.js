@@ -48,23 +48,46 @@ module.exports = {
     },
     addNav: function(req,res){
         NavType.findAll({raw:true}).then(function(result){
-            res.render('nav/add_nav',{jsonArr:result});
+            if(req.params.id)
+            {
+                Nav.findById(Number(req.params.id)).then(function(data){
+                    res.render('nav/add_nav',{jsonArr:result,siteInfo:data.dataValues});
+                });
+            }
+            else{
+                res.render('nav/add_nav',{jsonArr:result,siteInfo:''});
+            }
         });
     },
     doAddNav: function(req,res){
         if (!req.body) return res.sendStatus(400);  
-        Nav.upsert({
+        var param = {
             'title':req.body.title,
             'link':req.body.link,
             'flag':req.body.flag,
             'type_id':req.body.type_id
-        }).then(function(result){
-            if(result){
-                res.redirect('/');
-            }else{
-                res.redirect('/addNav');
-            }
+        };
+        if(req.body.id)
+        {
+            param.id = req.body.id;
+        }
+        Nav.upsert(param).then(function(result){
+            console.log(result);
+            res.redirect('/');
+            // if(result){
+            // }else{
+            //     res.redirect('/addNav');
+            // }
         });
       
+    },
+    doDelNav: function(req,res,next){
+        if (!req.body) return res.sendStatus(400);  
+        console.log(Number(req.body.id)+'~~~');
+        Nav.findById(Number(req.body.id)).then(function(nav){
+            nav.destroy()}).then(function(){
+                res.send(200,{"code":0});
+            })
+
     }
 };

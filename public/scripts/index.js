@@ -22,10 +22,16 @@ window.onload = function(){
     {
         oDelArr[i].onclick = function(){
             var oThis = this;
-            console.log('/del'+oThis.getAttribute('j-site-id'));
-            confirm('确定要删除该记录吗？',function(){
-                location.href = '/del?id='+oThis.getAttribute('j-site-id');
-            });
+            console.log('/del/'+oThis.getAttribute('j-site-id'));
+            if(confirm('确定要删除该记录吗？'))
+            {
+                var site_id = oThis.getAttribute('j-site-id');
+                url = '/del';
+                ajax.send(url,'POST',{id:site_id},function(res){
+                    var oLi = oThis.parentNode;
+                    oLi.parentNode.removeChild(oLi);
+                })
+            }
         }
 
     }

@@ -5,21 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>添加导航</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/index.css"/>
 </head>
 <body>
+        <%-include("./header.ejs",{"page":"add"})%>
     <form action="/doAddNav" method="post">
         导航分类：
         <select name="type_id" id="typeId">
             <% jsonArr.forEach(function(resJson){ %>
-                <option value="<%= resJson.id %>"><%= resJson.name %></option>
+                <option value="<%= resJson.id %>" <% if(siteInfo && resJson.id  == siteInfo.type_id){ %> selected <% } %>><%= resJson.name %></option>
             <% }) %>
         </select><br>
-
-        名称：<input type="text" name="title"><br>
-       链接：<input type="text" name="link"><br>
-        生产：<input type="radio" name="flag" value="1">
-        测试：<input type="radio" name="flag" value="0"><br>
-        <input type="submit" value="添加">
+        <input type="hidden" name="id" <% if(siteInfo){ %> value="<%= siteInfo.id %>" <% } %>>
+        名称：<input type="text" name="title" <% if(siteInfo){ %> value="<%= siteInfo.title %>" <% } %>><br>
+       链接：<input type="text" name="link" <% if(siteInfo){ %>  value="<%= siteInfo.link %>" <% } %>><br>
+        生产：<input type="radio" name="flag" value="1" <% if(siteInfo && 1  == siteInfo.flag){ %> checked="checked" <% } %>>
+        测试：<input type="radio" name="flag" value="0" <% if(siteInfo && 0  == siteInfo.flag){ %> checked="checked" <% } %>><br>
+        <input type="submit" value="<% if(siteInfo){ %> 修改 <% }else{ %>添加 <% } %>">
     </form>
 </body>
 </html>
