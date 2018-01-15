@@ -22,7 +22,10 @@
        链接：<input type="text" name="link" <% if(siteInfo){ %>  value="<%= siteInfo.link %>" <% } %>><br>
         生产：<input type="radio" name="flag" value="1" <% if(siteInfo && 1  == siteInfo.flag){ %> checked="checked" <% } %>>
         测试：<input type="radio" name="flag" value="0" <% if(siteInfo && 0  == siteInfo.flag){ %> checked="checked" <% } %>><br>
-        <input type="submit" value="<% if(siteInfo){ %> 修改 <% }else{ %>添加 <% } %>">
+        <input type="submit" value="<% if(siteInfo){ %> 修改 <% }else{ %>添加 <% } %>" id="u-submit-btn">
     </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="/script/addNav.js"></script>  
 </body>
 </html>

@@ -1,5 +1,16 @@
 const Sequelize = require('sequelize');
 var sequelize = require('../config/db');
+
+var express = require('express');
+// 创建app对象
+// var app = express();
+// var http = require('http');
+
+// var sio = require('socket.io');
+// var io = sio.listen(http.createServer(app));
+// io.on('connection', function (socket) {
+//     console.log('SocketIO有新的连接!');
+//     });
 var Nav = sequelize.define('nav',{
     flag:{
         type:Sequelize.INTEGER
@@ -25,6 +36,21 @@ var NavType = sequelize.define('nav_type',{
     freezeTableName:true
 });
 var navType = NavType.sync({force:false});
+function isLogined(req){
+    if(req.cookies["account"] != null){
+        var account = req.cookies["account"];
+        var user = account.username;
+        var hash = account.hash;
+        if(authenticate(user, hash)){
+            console.log(user + " had logined.");
+            return true;
+        }
+    }
+    return false;
+}
+function authenticate(user, hash){
+    return true;
+}
 module.exports = {
     //展示所有导航页面
     index: function(req,res){
@@ -72,12 +98,8 @@ module.exports = {
             param.id = req.body.id;
         }
         Nav.upsert(param).then(function(result){
-            console.log(result);
+                io.sockets.emit('anyoneadd', { code: 1 });
             res.redirect('/');
-            // if(result){
-            // }else{
-            //     res.redirect('/addNav');
-            // }
         });
       
     },
@@ -89,5 +111,27 @@ module.exports = {
                 res.send(200,{"code":0});
             })
 
+    },
+    login :function(req,res,next){
+        res.render('user/login');
+    },
+    doLogin :function(req,res){
+        if (!req.body) return res.sendStatus(400);
+        var username = req.body.username;
+        var hash = req.body.pwd;
+        res.cookie('account', {username:username,hash:hash});
+        res.redirect('/');
+    },
+    checkLogin: function(req,res,next){
+        if(isLogined(req))
+        {
+            next();
+            return false;
+        }
+        res.redirect('/login');
+    },
+    logout :function(req,res){
+        res.cookie('account', null);
+        res.redirect('/');
     }
 };

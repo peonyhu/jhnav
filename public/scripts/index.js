@@ -17,7 +17,9 @@ window.onload = function(){
      * 删除站点
     */
     var oDelArr = document.querySelectorAll('.u-del');
-    var oDelArrLen = oDelArr.length;   
+    var oDelArrLen = oDelArr.length;  
+    
+    var socket = io.connect('http://localhost:3001'); 
     for(var i = 0;i < oDelArrLen;i++)
     {
         oDelArr[i].onclick = function(){
@@ -28,6 +30,7 @@ window.onload = function(){
                 var site_id = oThis.getAttribute('j-site-id');
                 url = '/del';
                 ajax.send(url,'POST',{id:site_id},function(res){
+                    socket.emit('aboutDel',{id: 1});
                     var oLi = oThis.parentNode;
                     oLi.parentNode.removeChild(oLi);
                 })

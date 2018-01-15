@@ -1,4 +1,4 @@
-var app = require('./app.js');
+var app = require('./app');
 var controller = require('./controller/index');
 
 var express = require('express');
@@ -7,9 +7,13 @@ var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 // 访问根路由 渲染 index 模板
 router.get('/', controller.nav.index);
-router.get('/addNav/:id',controller.nav.addNav);
-router.get('/addNav',controller.nav.addNav);
-router.post('/doAddNav',urlencodedParser,controller.nav.doAddNav);
+router.get('/addNav/:id',controller.nav.checkLogin,controller.nav.addNav);
+router.get('/addNav',controller.nav.checkLogin,controller.nav.addNav);
+router.post('/doAddNav',urlencodedParser,controller.nav.checkLogin,controller.nav.doAddNav);
 router.post('/del',urlencodedParser,controller.nav.doDelNav);
+router.get('/login',controller.nav.login);
+router.post('/doLogin',urlencodedParser,controller.nav.doLogin);
+router.get('/logout',controller.nav.logout);
+router.get('/socket',controller.socket.index);
 
 module.exports = router;
