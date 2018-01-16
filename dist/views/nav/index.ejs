@@ -23,7 +23,7 @@
             <h2 class="m-title">内部常用工具</h2>
             <ul class="m-site-list">
                 <% jsonArr.type_id_1.forEach(function(resJson){ %>
-                    <li><a href="<%= resJson.link %>" <% if(resJson.flag == 1){ %> class="color1" <% } %> ><%= resJson.title %></a><a class="u-edit" href="/addNav/=<%= resJson.id %>">编辑</a><span class="u-del" j-site-id="<%= resJson.id %>">删除</span></li>
+                    <li><a href="<%= resJson.link %>" <% if(resJson.flag == 1){ %> class="color1" <% } %> ><%= resJson.title %></a><a class="u-edit" href="/addNav/<%= resJson.id %>">编辑</a><span class="u-del" j-site-id="<%= resJson.id %>">删除</span></li>
                 <% }) %>
             </ul>
         </div>
@@ -31,6 +31,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script type="text/javascript" src="/scripts/ajax-a84cdd29e8.js"></script>
-    <script type="text/javascript" src="/scripts/index-decebbc458.js"></script>
+    <script type="text/javascript" src="/scripts/index-40ff3622f0.js"></script>
 </body>
 </html>

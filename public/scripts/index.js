@@ -19,7 +19,7 @@ window.onload = function(){
     var oDelArr = document.querySelectorAll('.u-del');
     var oDelArrLen = oDelArr.length;  
     
-    var socket = io.connect('http://localhost:3001'); 
+    var socket = io.connect('http://localhost:2999'); 
     for(var i = 0;i < oDelArrLen;i++)
     {
         oDelArr[i].onclick = function(){

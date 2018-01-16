@@ -23,7 +23,7 @@
             <h2 class="m-title">内部常用工具</h2>
             <ul class="m-site-list">
                 <% jsonArr.type_id_1.forEach(function(resJson){ %>
-                    <li><a href="<%= resJson.link %>" <% if(resJson.flag == 1){ %> class="color1" <% } %> ><%= resJson.title %></a><a class="u-edit" href="/addNav/=<%= resJson.id %>">编辑</a><span class="u-del" j-site-id="<%= resJson.id %>">删除</span></li>
+                    <li><a href="<%= resJson.link %>" <% if(resJson.flag == 1){ %> class="color1" <% } %> ><%= resJson.title %></a><a class="u-edit" href="/addNav/<%= resJson.id %>">编辑</a><span class="u-del" j-site-id="<%= resJson.id %>">删除</span></li>
                 <% }) %>
             </ul>
         </div>

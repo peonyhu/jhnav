@@ -15,5 +15,6 @@ router.get('/login',controller.nav.login);
 router.post('/doLogin',urlencodedParser,controller.nav.doLogin);
 router.get('/logout',controller.nav.logout);
 router.get('/socket',controller.socket.index);
+router.get('/notice',controller.httpGet.notice);
 
 module.exports = router;

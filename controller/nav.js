@@ -98,7 +98,6 @@ module.exports = {
             param.id = req.body.id;
         }
         Nav.upsert(param).then(function(result){
-                io.sockets.emit('anyoneadd', { code: 1 });
             res.redirect('/');
         });
       

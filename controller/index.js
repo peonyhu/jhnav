@@ -1,5 +1,6 @@
 var controller = {
     nav:require('./nav'),
-    socket:require('./socket')
+    socket:require('./socket'),
+    httpGet:require('./httpGet')
 }
 module.exports = controller;

@@ -23,18 +23,19 @@ app.set('view engine' , 'ejs'); //设置模板引擎为ejs
 var router = require('./routes');
 app.use('/', router);
 app.use( (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000"); //The ionic server
+    res.header("Access-Control-Allow-Origin", "http://localhost:2999"); //The ionic server
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
-var server = app.listen(3001);    // 监听 3000 端口
-console.log('server started at port 3000');
+var server = app.listen(2999);    // 监听 3000 端口
+console.log('server started at port 2999');
  var io = require('socket.io').listen(server);
 io.on('connection', function (socket) {
+    io.emit('news', 'hello');
     socket.on('aboutDel', function (data) {
         io.emit('news', '站点id为'+data.id+'的导航已被删除');
     });
-    
 });
+//require('./controller/socketBase')(server);
 module.exports = app;
