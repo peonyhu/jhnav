@@ -36,6 +36,11 @@ io.on('connection', function (socket) {
     socket.on('aboutDel', function (data) {
         io.emit('news', '站点id为'+data.id+'的导航已被删除');
     });
+    socket.on('delivercode', function (data) {
+        console.log(data);
+        io.emit('doQrLogin'+data.qrcode, data);
+    });
+    
 });
 //require('./controller/socketBase')(server);
 module.exports = app;

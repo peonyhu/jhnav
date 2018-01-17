@@ -30,7 +30,7 @@ window.onload = function(){
                 var site_id = oThis.getAttribute('j-site-id');
                 url = '/del';
                 ajax.send(url,'POST',{id:site_id},function(res){
-                    socket.emit('aboutDel',{id: 1});
+                    socket.emit('aboutDel',{id: site_id});
                     var oLi = oThis.parentNode;
                     oLi.parentNode.removeChild(oLi);
                 })
