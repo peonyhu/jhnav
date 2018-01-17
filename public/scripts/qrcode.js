@@ -1,4 +1,4 @@
-window.onload = ()=>{
+window.onload = function(){
     var socket = io.connect();
     var oBtn = document.querySelector('#deliver');
     var qrcode = GetQueryString('qrcode');

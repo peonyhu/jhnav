@@ -1,4 +1,4 @@
-window.onload = ()=>{
+window.onload = function(){
     var oQrcode = document.querySelector('#qrcode');
     var qrcode = document.querySelector('#uniqueCode').value;
     console.log(qrcode);
@@ -7,7 +7,7 @@ window.onload = ()=>{
 
     
     var socket = io.connect();
-    socket.on('doQrLogin'+qrcode,(data)=>{
+    socket.on('doQrLogin'+qrcode,function(data){
         console.log(data);
     });
 

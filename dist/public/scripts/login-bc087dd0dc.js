@@ -1,0 +1,1 @@
+window.onload=function(){var o=document.querySelector("#qrcode"),e=document.querySelector("#uniqueCode").value;console.log(e),new QRCode(o,"http://10.10.11.201:2999/qrcode?qrcode="+e);io.connect().on("doQrLogin"+e,function(o){console.log(o)})};

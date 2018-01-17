@@ -28,7 +28,7 @@ app.use( (req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
-var server = app.listen(2999);    // 监听 3000 端口
+var server = app.listen(2999);    // 监听端口
 console.log('server started at port 2999');
  var io = require('socket.io').listen(server);
 io.on('connection', function (socket) {
@@ -37,7 +37,6 @@ io.on('connection', function (socket) {
         io.emit('news', '站点id为'+data.id+'的导航已被删除');
     });
     socket.on('delivercode', function (data) {
-        console.log(data);
         io.emit('doQrLogin'+data.qrcode, data);
     });
     
