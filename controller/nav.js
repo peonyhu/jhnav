@@ -83,8 +83,10 @@ module.exports = {
             param.id = req.body.id;
         }
         Nav.upsert(param).then(function(result){
+            console.log('86行：'+new Date().getTime());
             res.redirect('/');
         });
+        console.log('89行：'+new Date().getTime());
       
     },
     doDelNav: function(req,res,next){
