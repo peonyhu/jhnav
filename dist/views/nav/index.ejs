@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>导航</title>
+    <link rel="stylesheet" type="text/css" href="/css/common-a56cf33da8.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/index-5ac55e77ed.css"/>
+</head>
+<body>
+    <%-include("./header.ejs",{"page":"index","userInfo":userInfo})%>
+    
+    <div class="g-main-wrap">
+        <div class="w1100">
+            <h2 class="m-title">常用网站</h2>
+            <ul class="m-site-list">
+                <% jsonArr.type_id_2.forEach(function(resJson){ %>
+                <li><a href="<%= resJson.link %>" <% if(resJson.flag == 1){ %> class="color1" <% } %> ><%= resJson.title %></a><a class="u-edit" href="/addNav/<%= resJson.id %>">编辑</a><span class="u-del" j-site-id="<%= resJson.id %>">删除</span></li>
+                <% }) %>
+            </ul>
+        
+            <h2 class="m-title">内部常用工具</h2>
+            <ul class="m-site-list">
+                <% jsonArr.type_id_1.forEach(function(resJson){ %>
+                    <li><a href="<%= resJson.link %>" <% if(resJson.flag == 1){ %> class="color1" <% } %> ><%= resJson.title %></a><a class="u-edit" href="/addNav/<%= resJson.id %>">编辑</a><span class="u-del" j-site-id="<%= resJson.id %>">删除</span></li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script type="text/javascript" src="/scripts/ajax-a84cdd29e8.js"></script>
+    <script type="text/javascript" src="/scripts/index-bb9884f4d4.js"></script>
+</body>
+</html>

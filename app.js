@@ -29,7 +29,7 @@ app.use( (req, res, next) => {
     next();
 });
 var server = app.listen(2999);    // 监听端口
- var io = require('socket.io').listen(server);
+var io = require('socket.io').listen(server);
 io.on('connection', function (socket) {
     io.emit('news', 'hello');
     socket.on('aboutDel', function (data) {

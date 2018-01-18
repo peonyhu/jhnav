@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="/css/common-a56cf33da8.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/user-4899ac8ab7.css"/>
+</head>
+<body>
+    <%-include("../nav/header.ejs",{"page":"login","userInfo":{}})%>
+    <div class="w1100">
+        <div class="mt30 m-clearfix">
+            <div class="m-left-box">
+                <p class="m-login-title">二维码扫描登录</p>
+                <div id="qrcode"></div>
+            </div>
+            <div class="m-middle-box"></div>
+            <div class="m-right-box">
+                <p class="m-login-title">密码登录</p>
+                <ul class="m-form-login">
+                    <li><span class="m-li-tit"> 用户名：</span><div class="m-li-con"><input type="text"  id="user"></div></li>
+                    <li><span class="m-li-tit"> 密码：</span><div class="m-li-con"><input type="password"  id="pwd"></div></li>
+                    <li><span class="m-li-tit"> &nbsp;</span><div class="m-li-con"><span class="u-common-btn1 u-comnbtn-size3" id="u-login-btn">登录</span></div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="uniqueCode" value="<%= qrCode %>">
+    <script type="text/javascript" src="/labs/qr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script type="text/javascript" src="/scripts/ajax-a84cdd29e8.js"></script>
+    <script type="text/javascript" src="/scripts/login-63c9cc2d54.js"></script>
+</body>
+</html>

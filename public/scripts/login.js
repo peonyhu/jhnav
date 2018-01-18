@@ -29,7 +29,7 @@ window.onload = function(){
         doLogin({name:user,pwd:pwd,type:1})
     }
     function doLogin(data){
-        let url = '/doLogin';
+        var url = '/doLogin';
         ajax.send(url,'POST',data,function(res){
             console.log(res);
             if(res.message.code == 0){

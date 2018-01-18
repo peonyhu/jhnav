@@ -85,10 +85,10 @@ gulp.task('clear', function(){
 
 /* 复制静态资源 */
 
-gulp.task('cpLabs',function(){
+gulp.task('copy-labs',function(){
     return gulp.src(labsConfig.src)
         .pipe(gulp.dest(labsConfig.dest));
-})
+});
 /*
 * 静态资源加md5版本号
 */
@@ -146,10 +146,10 @@ gulp.task('clear-tem', function(){
     .pipe(clean());
 });
 gulp.task('publish',function(callback){
-    runSequence('clear', 'sass', 'publish-js', 'publish-css','publish-image', 'publish-view','replace-image-in-css','clear-tem',callback);
+    runSequence('clear', 'sass', 'copy-labs', 'publish-js', 'publish-css','publish-image', 'publish-view','replace-image-in-css','clear-tem',callback);
 });
 gulp.task('publish-addMap',function(callback){
-    runSequence('clear', 'sass', 'publish-js-add-map', 'publish-css','publish-image', 'publish-view','replace-image-in-css','clear-tem',callback);
+    runSequence('clear', 'sass', 'copy-labs','publish-js-add-map', 'publish-css','publish-image', 'publish-view','replace-image-in-css','clear-tem',callback);
 });
 
 

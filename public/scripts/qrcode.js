@@ -11,7 +11,7 @@ window.onload = function(){
         var hash = oHash.value;
         if(!(id && name && qrcode && hash))
         {
-            location.href="/";
+            location.href="/login";
             return false;
         }
         var url = '/doQrLogin';

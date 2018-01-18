@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>公告列表</title>
+    <link rel="stylesheet" type="text/css" href="/css/common-a56cf33da8.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/index-5ac55e77ed.css"/>
+</head>
+<body>
+    <%-include("../nav/header.ejs",{"page":"notice","userInfo":userInfo})%>
+    
+    <div class="g-main-wrap">
+        <div class="w1100">
+            <ul class="m-notice-list">
+                <% noticeArr.forEach(function(resJson){ %>
+                <li><a href="<%= resJson.webUrl %>"><%= resJson.title %></a></li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
