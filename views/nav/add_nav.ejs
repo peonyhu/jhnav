@@ -6,23 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>添加导航</title>
     <link rel="stylesheet" type="text/css" href="/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/user.css"/>
 </head>
 <body>
-        <%-include("./header.ejs",{"page":"add"})%>
-    <form action="/doAddNav" method="post">
-        导航分类：
-        <select name="type_id" id="typeId">
-            <% jsonArr.forEach(function(resJson){ %>
-                <option value="<%= resJson.id %>" <% if(siteInfo && resJson.id  == siteInfo.type_id){ %> selected <% } %>><%= resJson.name %></option>
-            <% }) %>
-        </select><br>
+        <%-include("./header.ejs",{"page":"add","userInfo":userInfo})%>
+    <form action="/doAddNav" method="post" class="w1100">
         <input type="hidden" name="id" <% if(siteInfo){ %> value="<%= siteInfo.id %>" <% } %>>
-        名称：<input type="text" name="title" <% if(siteInfo){ %> value="<%= siteInfo.title %>" <% } %>><br>
-       链接：<input type="text" name="link" <% if(siteInfo){ %>  value="<%= siteInfo.link %>" <% } %>><br>
-        生产：<input type="radio" name="flag" value="1" <% if(siteInfo && 1  == siteInfo.flag){ %> checked="checked" <% } %>>
-        测试：<input type="radio" name="flag" value="0" <% if(siteInfo && 0  == siteInfo.flag){ %> checked="checked" <% } %>><br>
-        <input type="submit" value="<% if(siteInfo){ %> 修改 <% }else{ %>添加 <% } %>" id="u-submit-btn">
+        <ul class="m-form-login m-add-nav">
+            <li><span class="m-li-tit"> 导航分类：</span>
+                <div class="m-li-con">
+                    <select name="type_id" id="typeId">
+                        <% jsonArr.forEach(function(resJson){ %>
+                            <option value="<%= resJson.id %>" <% if(siteInfo && resJson.id  == siteInfo.type_id){ %> selected <% } %>><%= resJson.name %></option>
+                        <% }) %>
+                    </select>
+                </div>
+            </li> 
+            <li><span class="m-li-tit"> 名称：</span><div class="m-li-con"><input type="text" name="title" <% if(siteInfo){ %> value="<%= siteInfo.title %>" <% } %>></div></li>
+            <li><span class="m-li-tit"> 链接：</span><div class="m-li-con"><input type="text" name="link" <% if(siteInfo){ %>  value="<%= siteInfo.link %>" <% } %>></div></li>
+            <li><span class="m-li-tit"> 生产：</span><div class="m-li-con"><input type="radio" name="flag" value="1" <% if(siteInfo && 1  == siteInfo.flag){ %> checked="checked" <% } %>></div></li>
+            <li><span class="m-li-tit"> 测试：</span><div class="m-li-con"><input type="radio" name="flag" value="0" <% if(siteInfo && 0  == siteInfo.flag){ %> checked="checked" <% } %>></div></li>
+            <li><span class="m-li-tit"> &nbsp;</span><div class="m-li-con"><input type="submit" value="<% if(siteInfo){ %> 修改 <% }else{ %>添加 <% } %>" class="u-common-btn1 u-comnbtn-size3" id="u-submit-btn"></div></li>
+        </ul>
     </form>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>

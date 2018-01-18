@@ -1,1 +1,0 @@
-function GetQueryString(e){var n=new RegExp("(^|&)"+e+"=([^&]*)(&|$)"),r=window.location.search.substr(1).match(n);return null!=r?unescape(r[2]):null}window.onload=function(){var e=io.connect(),n=(document.querySelector("#deliver"),GetQueryString("qrcode"));e.emit("delivercode",{name:"Emma",qrcode:n})};

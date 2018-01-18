@@ -1,21 +1,14 @@
 const Sequelize = require('sequelize');
 var sequelize = require('../config/db');
-
 var express = require('express');
-// 创建app对象
-// var app = express();
-// var http = require('http');
-
-// var sio = require('socket.io');
-// var io = sio.listen(http.createServer(app));
-// io.on('connection', function (socket) {
-//     console.log('SocketIO有新的连接!');
-//     });
 var User = sequelize.define('user',{
     name:{
         type:Sequelize.STRING
     },
     pwd:{
+        type:Sequelize.STRING
+    },
+    qrcode:{
         type:Sequelize.STRING
     }
 },{
@@ -28,14 +21,17 @@ function isLogined(req){
         var user = account.username;
         var hash = account.hash;
         if(authenticate(user, hash)){
-            console.log(user + " had logined.");
             return true;
         }
     }
     return false;
 }
 function authenticate(user, hash){
-    return true;
+    if(user && hash)
+    {
+        return true;
+    }
+    return false;
 }
 function randomString(len) {
 　　len = len || 32;
@@ -49,15 +45,36 @@ function randomString(len) {
 }
 module.exports = {
     login :(req,res,next)=>{
-
         res.render('user/login',{qrCode:randomString()});
     },
     doLogin :(req,res)=>{
         if (!req.body) return res.sendStatus(400);
-        var username = req.body.username;
-        var hash = req.body.pwd;
-        res.cookie('account', {username:username,hash:hash});
-        res.redirect('/');
+        var type = req.body.type;
+        var username = req.body.name;
+        var conditionArr = {name:username};
+        if(type == 1)
+        {
+            conditionArr.pwd = req.body.pwd;
+        }else if(type == 2)
+        {
+            conditionArr.qrcode = req.body.qrcode;
+        }
+        User.findOne({
+            where:{
+                $and:conditionArr
+            },
+            raw:true
+        }).then(function(user){
+            if(user)
+            {
+                res.cookie('account',{username:user.name,hash:user.pwd+user.qrcode,id:user.id});
+                res.status(200).send({"message":{"code":0}}) 
+            }else{
+                res.status(200).send({"message":{"code":-1,message:"用户名或密码不正确"}}) 
+            }
+        });
+        
+       
     },
     checkLogin: (req,res,next)=>{
         if(isLogined(req))
@@ -68,10 +85,37 @@ module.exports = {
         res.redirect('/login');
     },
     logout :(req,res)=>{
-        res.cookie('account', null);
+        res.cookie('account',null);
         res.redirect('/');
     },
     qrcode :(req,res)=>{
-        res.render('user/qrcode');
+        res.render('user/qrcode',{userInfo:getUserInfo(req)});
+    },
+    doQrLogin :(req,res)=>{
+        console.log(41413243);
+        console.log(req.body);
+        if(!req.body) return res.sendStatus(400);
+        var id = req.body.id;
+        var name = req.body.name;
+        var qrcode = req.body.qrcode;
+        User.update({qrcode:qrcode},{
+            where:{
+                $and:{id:id,name:name}
+            }
+        }).then(function(result){
+            if(result[0] >= 0){
+                res.status(200).send({"message":{"code":0,"message":"标识注入成功"},"data":{name:name,id:id,qrcode:qrcode}});
+            }
+            else{
+                res.status(200).send({"message":{"code":-1,"message":'扫描二维码登录失败，请稍后重试'}});
+            }
+        });
     }
+}
+function getUserInfo(req){
+    let account = {};
+    if(req.cookies["account"] != null){
+        account = req.cookies["account"];
+    }
+    return account;
 }

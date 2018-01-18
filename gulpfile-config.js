@@ -16,6 +16,10 @@ module.exports = {
     src: src + '/scripts/**/*.js',
     dest: 'dist/public/scripts'
   },
+  labs: {
+    src: src + '/labs/**/*.js',
+    dest: 'dist/public/labs'
+  },
   images: {
     src: src + '/images/**/*',
     dest: 'dist/public/images'

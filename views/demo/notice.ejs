@@ -9,13 +9,13 @@
     <link rel="stylesheet" type="text/css" href="/css/index.css"/>
 </head>
 <body>
-    <%-include("../nav/header.ejs",{"page":"notice"})%>
+    <%-include("../nav/header.ejs",{"page":"notice","userInfo":userInfo})%>
     
     <div class="g-main-wrap">
         <div class="w1100">
-            <ul>
+            <ul class="m-notice-list">
                 <% noticeArr.forEach(function(resJson){ %>
-                <li><%= resJson.title %></li>
+                <li><a href="<%= resJson.webUrl %>"><%= resJson.title %></a></li>
                 <% }) %>
             </ul>
         </div>

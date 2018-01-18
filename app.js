@@ -27,9 +27,8 @@ app.use( (req, res, next) => {
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-  });
+});
 var server = app.listen(2999);    // 监听端口
-console.log('server started at port 2999');
  var io = require('socket.io').listen(server);
 io.on('connection', function (socket) {
     io.emit('news', 'hello');

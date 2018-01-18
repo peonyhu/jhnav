@@ -13,9 +13,10 @@ router.post('/doAddNav',urlencodedParser,controller.user.checkLogin,controller.n
 router.post('/del',urlencodedParser,controller.nav.doDelNav);
 router.get('/login',controller.user.login);
 router.post('/doLogin',urlencodedParser,controller.user.doLogin);
-router.get('/logout',controller.nav.logout);
+router.get('/logout',controller.user.logout);
 router.get('/socket',controller.socket.index);
 router.get('/notice',controller.httpGet.notice);
 router.get('/qrcode',controller.user.qrcode);
+router.post('/doQrLogin',urlencodedParser,controller.user.doQrLogin);
 
 module.exports = router;

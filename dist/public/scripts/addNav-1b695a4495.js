@@ -1,1 +1,0 @@
-document.onload=function(){socket=io.connect("http://localhost:2999");document.querySelector("#u-submit-btn").onclick=function(){}};

@@ -36,21 +36,6 @@ var NavType = sequelize.define('nav_type',{
     freezeTableName:true
 });
 var navType = NavType.sync({force:false});
-function isLogined(req){
-    if(req.cookies["account"] != null){
-        var account = req.cookies["account"];
-        var user = account.username;
-        var hash = account.hash;
-        if(authenticate(user, hash)){
-            console.log(user + " had logined.");
-            return true;
-        }
-    }
-    return false;
-}
-function authenticate(user, hash){
-    return true;
-}
 module.exports = {
     //展示所有导航页面
     index: function(req,res){
@@ -69,7 +54,7 @@ module.exports = {
                     resSet['type_id_'+result[i].type_id].push(result[i]);
                 }
             }
-            res.render('nav/index',{jsonArr:resSet});
+            res.render('nav/index',{jsonArr:resSet,userInfo:getUserInfo(req)});
         })
     },
     addNav: function(req,res){
@@ -77,11 +62,11 @@ module.exports = {
             if(req.params.id)
             {
                 Nav.findById(Number(req.params.id)).then(function(data){
-                    res.render('nav/add_nav',{jsonArr:result,siteInfo:data.dataValues});
+                    res.render('nav/add_nav',{jsonArr:result,siteInfo:data.dataValues,userInfo:getUserInfo(req)});
                 });
             }
             else{
-                res.render('nav/add_nav',{jsonArr:result,siteInfo:''});
+                res.render('nav/add_nav',{jsonArr:result,siteInfo:'',userInfo:getUserInfo(req)});
             }
         });
     },
@@ -107,30 +92,17 @@ module.exports = {
         console.log(Number(req.body.id)+'~~~');
         Nav.findById(Number(req.body.id)).then(function(nav){
             nav.destroy()}).then(function(){
-                res.send(200,{"code":0});
+                res.status(200).send({"code":0});
             })
 
-    },
-    login :function(req,res,next){
-        res.render('user/login');
-    },
-    doLogin :function(req,res){
-        if (!req.body) return res.sendStatus(400);
-        var username = req.body.username;
-        var hash = req.body.pwd;
-        res.cookie('account', {username:username,hash:hash});
-        res.redirect('/');
-    },
-    checkLogin: function(req,res,next){
-        if(isLogined(req))
-        {
-            next();
-            return false;
-        }
-        res.redirect('/login');
-    },
-    logout :function(req,res){
-        res.cookie('account', null);
-        res.redirect('/');
     }
 };
+
+function getUserInfo(req){
+    let account = {};
+    console.log(req.cookies["account"]);
+    if(req.cookies["account"] != null){
+        account = req.cookies["account"];
+    }
+    return account;
+}

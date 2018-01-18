@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>确认登录</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
 </head>
 <body>
-    扫码登录确认<br>
-    <input type="button" value="确认登录" id="deliverBtn">
+    <div class="w1100">
+        <p class="mt50">Hi <%= userInfo.username%>, 请确认PC端的二维码扫描登录</p>
+        <input type="hidden" id="userid" value="<%= userInfo.id%>">
+        <input type="hidden" id="username" value="<%= userInfo.username%>">
+        <input type="hidden" id="hash" value="<%= userInfo.hash%>">
+        <span class="u-common-btn1 u-comnbtn-size3 mt50" id="deliverBtn">确认登录</span>
+    </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script> 
 

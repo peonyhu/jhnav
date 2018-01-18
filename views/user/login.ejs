@@ -6,20 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>登录</title>
     <link rel="stylesheet" type="text/css" href="/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/user.css"/>
 </head>
 <body>
-    <%-include("../nav/header.ejs",{"page":"login"})%>
-    
-    <form action="/doLogin" method="post">
-        用户名：<input type="text" name="username">
-        密码：<input type="password" name="pwd">
-        <input type="submit" value="登录">
-    </form>
-    <div id="qrcode"></div>
+    <%-include("../nav/header.ejs",{"page":"login","userInfo":{}})%>
+    <div class="w1100">
+        <div class="mt30 m-clearfix">
+            <div class="m-left-box">
+                <p class="m-login-title">二维码扫描登录</p>
+                <div id="qrcode"></div>
+            </div>
+            <div class="m-middle-box"></div>
+            <div class="m-right-box">
+                <p class="m-login-title">密码登录</p>
+                <ul class="m-form-login">
+                    <li><span class="m-li-tit"> 用户名：</span><div class="m-li-con"><input type="text"  id="user"></div></li>
+                    <li><span class="m-li-tit"> 密码：</span><div class="m-li-con"><input type="password"  id="pwd"></div></li>
+                    <li><span class="m-li-tit"> &nbsp;</span><div class="m-li-con"><span class="u-common-btn1 u-comnbtn-size3" id="u-login-btn">登录</span></div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <input type="hidden" id="uniqueCode" value="<%= qrCode %>">
-    <script type="text/javascript" src="http://code.ciaoca.com/javascript/qrcode/demo/js/qrcode.js"></script>
+    <script type="text/javascript" src="/labs/qr.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script type="text/javascript" src="/scripts/ajax.js"></script>
     <script type="text/javascript" src="/scripts/login.js"></script>
 </body>
 </html>

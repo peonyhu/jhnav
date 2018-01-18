@@ -35,3 +35,8 @@
 
 .m-site-list li.active .u-edit, .m-site-list li.active .u-del {
   display: block; }
+
+.m-notice-list li {
+  height: 40px;
+  line-height: 40px;
+  padding: 30px 10px 0; }

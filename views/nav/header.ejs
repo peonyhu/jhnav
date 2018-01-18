@@ -12,6 +12,16 @@
             <li <% if(page == 'add'){ %>class="menu_hover" <% }%>>
                 <a href="/addNav">添加导航</a> 
             </li>
+            <li <% if(page == 'notice'){ %>class="menu_hover" <% }%>>
+                <a href="/notice">公司公告</a> 
+            </li>
+            <li <% if(page == 'login'){ %>class="menu_hover" <% }%>>
+                <% if(userInfo && userInfo.username){ %>
+                <a href="/logout">退出[<%= userInfo.username %>]</a> 
+                <% }else{%>
+                    <a href="/login">登录</a> 
+                <% } %>
+            </li>
         </ul>
         <div class="clear"></div>
     </div>

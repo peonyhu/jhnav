@@ -1,12 +1,33 @@
 window.onload = function(){
     var socket = io.connect();
-    var oBtn = document.querySelector('#deliver');
+    var oBtn = document.querySelector('#deliverBtn');
     var qrcode = GetQueryString('qrcode');
-    // var url = '/doQrLogin';
-    // ajax.send(url,'GET',{qrcode:qrcode},function(res){
-    //     socket.emit('delivercode',res.data);
-    // });
-    socket.emit('delivercode',{'name':'Emma','qrcode':qrcode});
+    var oUserId = document.querySelector('#userid');
+    var oUserName = document.querySelector('#username');
+    var oHash = document.querySelector('#hash');
+    oBtn.onclick = function(){
+        var id = oUserId.value;
+        var name = oUserName.value;
+        var hash = oHash.value;
+        if(!(id && name && qrcode && hash))
+        {
+            location.href="/";
+            return false;
+        }
+        var url = '/doQrLogin';
+        var param = {qrcode:qrcode,id:id,name:name,hash:hash};
+        ajax.send(url,'POST',param,function(res){
+            console.log(res);
+            if(res.message.code == 0){
+                socket.emit('delivercode',res.data);
+                alert('扫码登录成功');
+            }else{
+                alert(res.message.message);
+            }
+        });
+    }
+    console.log(socket);
+    //socket.emit('delivercode',{'id':1,'name':'Emma','qrcode':qrcode});
 
 }
 

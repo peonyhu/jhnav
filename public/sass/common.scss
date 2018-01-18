@@ -7,6 +7,10 @@ a:hover{ color: $color3;}
 h1,h2,h3,h4,h5,h6{font-weight: normal;}
 .fr{float:right;}
 .fl{float:left;}
+.m-clearfix{clear: both;}
+
+.mt30{margin-top: 30px;}
+.mt50{margin-top: 50px;}
 
 /* 头部 */
 .g-header{background-color:$color7;}
@@ -23,3 +27,33 @@ li.menu_hover a{color: $color1;}
 
 .g-main-wrap{background-color:$color6;padding-bottom:60px;}
 .w1100{width:1100px;margin: 0 auto;}
+button, input, select, textarea {font-size: 100%;}
+input:focus{outline:none;}
+input[type="text"],input[type="password"]{width:288px;height: 38px;border:1px solid $color9;padding-left:10px;}
+
+/*圆角按钮*/
+.u-common-btn1,.u-common-btn2,.u-common-btn3{display: inline-block;border-radius: 3px;text-align: center;}
+/*黄色实心按钮*/
+.u-common-btn1{background-color: #fbbf00;color: #fff; border: 1px solid #fbbf00;cursor: pointer;}
+.u-common-btn1:hover{background-color: #ff9900; border-color: #edb501;color: #fff; }
+/*黄色空心按钮*/
+.u-common-btn2{background-color: #fff;color: #fbbf00;border: 1px solid #fbbf00;cursor: pointer;}
+.u-common-btn2:hover{background-color: #fbbf00;color: #fff;}
+/*灰色实心按钮*/
+.u-common-btn3{background-color: #ccc;color: #fff; border: 1px solid #ccc;cursor:default;}
+.u-common-btn3:hover{background-color: #ccc; color: #fff;}
+/*按钮背景透明*/
+.bg-trans{ background-color: transparent;}
+
+/*大按钮*/
+.u-comnbtn-size3{width: 118px; height: 38px; line-height: 38px;}
+/*中按钮*/
+.u-comnbtn-size2{ width:68px; height: 28px; line-height: 28px; font-size: 16px;}
+/*小按钮*/
+.u-comnbtn-size1{ width: 58px; height: 22px; line-height: 22px; font-size: 12px;}
+
+
+
+/* 表单 */
+.m-li-tit{width:100px;float: left;line-height: 40px;height: 40px;}
+.m-li-con{width:300px;float: left;}
