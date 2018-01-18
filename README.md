@@ -81,7 +81,8 @@ nodejs 是用C++实现的基于V8引擎的JavaScript的运行环境，可以让J
 ├── gulpfile-config.js  // 构建目录配置文件
 ├── gulpfile.js         // 构建脚本  
 ├── package.json        
-├── README.md   
+├── README.md 
+├── nav.sql             // 初始化数据库脚本  
 └── gitignore
 
 ```
