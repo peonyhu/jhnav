@@ -20,7 +20,12 @@
 2.  git clone git@github.com:keepchasing/jhnav.git
 3.  cd jhnav
 4.  npm install
+5.  执行sql脚本
 
+```
+    mysql -h localhost -u root -p123456 ./nav.sql //123456是链接数据库的密码，./是sql脚本的相对路径
+
+```
 
 ## 项目目录结构 ##
 
